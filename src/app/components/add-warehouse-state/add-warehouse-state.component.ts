@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { WarehouseState } from 'src/app/classes/warehouse-state';
 import { WarehouseStateService } from 'src/app/services/warehouse-state.service';
 
@@ -13,7 +14,7 @@ export class AddWarehouseStateComponent implements OnInit {
   amount: number = 0;
   isFlower = false;
 
-  constructor(private warehouseStateService: WarehouseStateService) {}
+  constructor(private warehouseStateService: WarehouseStateService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {}
 
@@ -26,8 +27,12 @@ export class AddWarehouseStateComponent implements OnInit {
     );
     this.warehouseStateService
       .addWarehouseState(warehouseState)
-      .subscribe((response) => {
-        console.log(response);
+      .subscribe(response => {
+        if(response == 200) {
+          this.snackBar.open("Produkt został dodany!", "Ok", {
+            duration: 3000
+          })
+        }
       });
   }
 }
