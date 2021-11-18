@@ -21,4 +21,10 @@ export class WarehouseStateService {
       'http://localhost:8080/warehouse-states'
     );
   }
+
+  deleteWarehouseState(id: number) {
+    return this.http.delete<any>(
+      `http://localhost:8080/delete-warehouse-state/${id}`
+    );
+  }
 }
