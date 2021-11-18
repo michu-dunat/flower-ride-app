@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTable } from '@angular/material/table';
 import { WarehouseState } from 'src/app/classes/warehouse-state';
 import { WarehouseStateService } from 'src/app/services/warehouse-state.service';
@@ -17,7 +18,8 @@ export class WarehouseStatesTableComponent implements OnInit {
 
   constructor(
     private warehouseStateService: WarehouseStateService,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +40,11 @@ export class WarehouseStatesTableComponent implements OnInit {
         this.warehouseStateService
           .deleteWarehouseState(warehouseState.id!)
           .subscribe((response) => {
-            console.log(response);
+            if (response == 200) {
+              this.snackBar.open('Produkt został usunięty!', 'Ok', {
+                duration: 3000,
+              });
+            }
           });
       }
     });
