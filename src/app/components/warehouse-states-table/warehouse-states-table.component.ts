@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTable } from '@angular/material/table';
 import { WarehouseState } from 'src/app/classes/warehouse-state';
 import { WarehouseStateService } from 'src/app/services/warehouse-state.service';
 
@@ -12,9 +11,14 @@ import { WarehouseStateService } from 'src/app/services/warehouse-state.service'
 })
 export class WarehouseStatesTableComponent implements OnInit {
   warehouseStatesList: WarehouseState[] = [];
-  columnsToDisplay = ['name', 'pricePerPiece', 'amount', 'isFlower', 'delete'];
-
-  //@ViewChild(MatTable) table: MatTable<any>;
+  columnsToDisplay = [
+    'name',
+    'pricePerPiece',
+    'amount',
+    'isFlower',
+    'delete',
+    'add',
+  ];
 
   constructor(
     private warehouseStateService: WarehouseStateService,
@@ -25,7 +29,6 @@ export class WarehouseStatesTableComponent implements OnInit {
   ngOnInit(): void {
     this.warehouseStateService.getAllWarehouseStates().subscribe((response) => {
       this.warehouseStatesList = response;
-      //this.table.renderRows();
     });
   }
 
@@ -49,10 +52,40 @@ export class WarehouseStatesTableComponent implements OnInit {
       }
     });
   }
+
+  addAmount(warehouseState: WarehouseState) {
+    const dialogRef = this.dialog.open(AddAmountDialog);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.amountToAdd > 0) {
+        warehouseState.amount += result.amountToAdd;
+        this.warehouseStatesList = this.warehouseStatesList.map((wS) => {
+          if (wS !== warehouseState) {
+            return wS;
+          } else {
+            return warehouseState;
+          }
+        });
+        this.warehouseStateService
+          .updateWarehouseState(warehouseState)
+          .subscribe((response) => {
+            if (response == 200) {
+              this.snackBar.open(
+                'Ilość produktu została zaktualizowana!',
+                'Ok',
+                {
+                  duration: 3000,
+                }
+              );
+            }
+          });
+      }
+    });
+  }
 }
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
+  selector: 'delete-confirmation-dialog',
   template: `
     <h2 mat-dialog-title>Usunąć produkt?</h2>
     <mat-dialog-actions>
@@ -63,4 +96,35 @@ export class WarehouseStatesTableComponent implements OnInit {
 })
 export class DeleteConfirmationDialog {
   constructor(public dialogRef: MatDialogRef<DeleteConfirmationDialog>) {}
+}
+
+@Component({
+  selector: 'add-amount-dialog',
+  template: `
+    <h2 mat-dialog-title>Zwiększyć ilość produktu?</h2>
+
+    <mat-dialog-content>
+      <form #modalForm="ngForm">
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              name="amountToAdd"
+              placeholder="Ilość"
+              ngModel
+            />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]>Cofnij</button>
+      <button mat-button [mat-dialog-close]="modalForm.value">Dodaj</button>
+    </mat-dialog-actions>
+  `,
+})
+export class AddAmountDialog {
+  constructor(public dialogRef: MatDialogRef<AddAmountDialog>) {}
 }
