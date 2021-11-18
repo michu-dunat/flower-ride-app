@@ -9,9 +9,14 @@ import { MaterialModule } from './modules/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WarehouseStateService } from './services/warehouse-state.service';
+import { WarehouseStatesTableComponent } from './components/warehouse-states-table/warehouse-states-table.component';
 
 @NgModule({
-  declarations: [AppComponent, AddWarehouseStateComponent],
+  declarations: [
+    AppComponent,
+    AddWarehouseStateComponent,
+    WarehouseStatesTableComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -10,11 +10,15 @@ export class WarehouseStateService {
   constructor(private http: HttpClient) {}
 
   addWarehouseState(warehouseState: WarehouseState) {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-
     return this.http.post<any>(
       'http://localhost:8080/add-warehouse-state',
-      warehouseState,
+      warehouseState
+    );
+  }
+
+  getAllWarehouseStates(): Observable<WarehouseState[]> {
+    return this.http.get<WarehouseState[]>(
+      'http://localhost:8080/warehouse-states'
     );
   }
 }
