@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { WarehouseState } from 'src/app/classes/warehouse-state';
 import { WarehouseStateService } from 'src/app/services/warehouse-state.service';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { EditWarehouseStateDialogComponent } from '../edit-warehouse-state-dialog/edit-warehouse-state-dialog.component';
 
 @Component({
   selector: 'app-warehouse-states-table',
@@ -19,6 +20,7 @@ export class WarehouseStatesTableComponent implements OnInit {
     'isFlower',
     'delete',
     'add',
+    'edit'
   ];
 
   constructor(
@@ -72,7 +74,7 @@ export class WarehouseStatesTableComponent implements OnInit {
         this.warehouseStateService
           .updateWarehouseState(warehouseState)
           .subscribe((response) => {
-            if (response == 200) {
+            if (response.status == 200) {
               this.snackBar.open(
                 'Ilość produktu została zaktualizowana!',
                 'Ok',
@@ -82,6 +84,35 @@ export class WarehouseStatesTableComponent implements OnInit {
               );
             }
           });
+      }
+    });
+  }
+
+  edit(warehouseState: WarehouseState) {
+    const warehouseStateCopy = { ...warehouseState };
+
+    const dialogRef = this.dialog.open(EditWarehouseStateDialogComponent, {
+      data: {
+        title: 'Usunąć wybranego użytkownika?',
+        warehouseState: warehouseState,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('1');
+
+      } else {
+        console.log('2');
+        
+        this.warehouseStatesList = this.warehouseStatesList.map(
+          (warehouseStateInList) => {
+            if (warehouseStateInList.id == warehouseStateCopy.id) {
+              return warehouseStateCopy;
+            } else {
+              return warehouseStateInList;
+            }
+          }
+        );
       }
     });
   }

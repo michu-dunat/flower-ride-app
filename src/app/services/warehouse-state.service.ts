@@ -31,7 +31,10 @@ export class WarehouseStateService {
   updateWarehouseState(warehouseState: WarehouseState) {
     return this.http.put<any>(
       `http://localhost:8080/update-warehouse-state`,
-      warehouseState
+      warehouseState,
+      {
+        observe: 'response',
+      }
     );
   }
 }

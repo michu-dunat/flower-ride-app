@@ -49,6 +49,19 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let warehouseState">
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="edit(warehouseState)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
 </table>

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { enc, SHA256 } from 'crypto-js';
 import { User } from 'src/app/classes/user';
 import * as consts from 'src/app/consts';
 import { Role } from 'src/app/interfaces/role';
@@ -27,7 +28,8 @@ export class EditUserDialogComponent implements OnInit {
   }
 
   onYesClick() {
-    this.userService.updateWarehouseState(this.data.user).subscribe(
+    this.data.user.password = SHA256(this.data.user.password).toString(enc.Hex)
+    this.userService.updateUser(this.data.user).subscribe(
       (response) => {
         if (response.status == 200) {
           this.snackBar.open('Użytkownik został zaktualizowany!', 'Ok', {
@@ -44,6 +46,6 @@ export class EditUserDialogComponent implements OnInit {
       }
     );
 
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

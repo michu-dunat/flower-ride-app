@@ -14,6 +14,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
+import { EditWarehouseStateDialogComponent } from './components/edit-warehouse-state-dialog/edit-warehouse-state-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user
     AddUserComponent,
     UsersTableComponent,
     DeleteConfirmationDialogComponent,
-    EditUserDialogComponent
+    EditUserDialogComponent,
+    EditWarehouseStateDialogComponent
   ],
   imports: [
     BrowserModule,
