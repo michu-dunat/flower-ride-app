@@ -13,6 +13,7 @@ import { AddAmountDialog, WarehouseStatesTableComponent } from './components/war
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DeleteConfirmationDialogComponent } from './components/delete-confirmat
     AddAmountDialog,
     AddUserComponent,
     UsersTableComponent,
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    EditUserDialogComponent
   ],
   imports: [
     BrowserModule,

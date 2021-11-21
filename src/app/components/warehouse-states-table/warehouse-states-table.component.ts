@@ -87,20 +87,6 @@ export class WarehouseStatesTableComponent implements OnInit {
   }
 }
 
-// @Component({
-//   selector: 'delete-confirmation-dialog',
-//   template: `
-//     <h2 mat-dialog-title>Usunąć produkt?</h2>
-//     <mat-dialog-actions>
-//       <button mat-button [mat-dialog-close]>Nie</button>
-//       <button mat-button [mat-dialog-close]="true">Tak</button>
-//     </mat-dialog-actions>
-//   `,
-// })
-// export class DeleteConfirmationDialog {
-//   constructor(public dialogRef: MatDialogRef<DeleteConfirmationDialog>) {}
-// }
-
 @Component({
   selector: 'add-amount-dialog',
   template: `

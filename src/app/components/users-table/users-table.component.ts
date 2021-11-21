@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/classes/user';
 import { UserService } from 'src/app/services/user.service';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 
 @Component({
   selector: 'app-users-table',
@@ -12,7 +13,7 @@ import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog
 })
 export class UsersTableComponent implements OnInit {
   usersList: User[] = [];
-  columnsToDisplay = ['login', 'password', 'role', 'delete'];
+  columnsToDisplay = ['login', 'password', 'role', 'delete', 'edit'];
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
@@ -53,6 +54,12 @@ export class UsersTableComponent implements OnInit {
           }
         });
       }
+    });
+  }
+
+  edit(user: User) {
+    const dialogRef = this.dialog.open(EditUserDialogComponent, {
+      data: { title: 'Usunąć wybranego użytkownika?', user: user },
     });
   }
 }

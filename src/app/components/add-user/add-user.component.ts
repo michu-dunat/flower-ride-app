@@ -3,6 +3,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/classes/user';
 import { UserService } from 'src/app/services/user.service';
 import { SHA256, enc } from 'crypto-js';
+import * as consts from 'src/app/consts';
+import { Role } from 'src/app/interfaces/role';
 
 @Component({
   selector: 'app-add-user',
@@ -13,10 +15,7 @@ export class AddUserComponent implements OnInit {
   login: string = '';
   password: string = '';
   selectedRole: string = 'ROLE_USER';
-  roles: Role[] = [
-    { value: 'ROLE_USER', viewValue: 'Użytkownik' },
-    { value: 'ROLE_ADMIN', viewValue: 'Administrator' },
-  ];
+  roles: Role[] = consts.roles
 
   constructor(
     private userService: UserService,
@@ -28,7 +27,7 @@ export class AddUserComponent implements OnInit {
   sendJson() {
     const user = new User(
       this.login,
-      SHA256(this.password).toString(enc.Base64),
+      SHA256(this.password).toString(enc.Hex),
       this.selectedRole
     );
     this.userService.addUser(user).subscribe(
@@ -48,9 +47,4 @@ export class AddUserComponent implements OnInit {
       }
     );
   }
-}
-
-interface Role {
-  value: string;
-  viewValue: string;
 }

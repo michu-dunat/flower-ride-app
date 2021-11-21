@@ -20,4 +20,11 @@ export class UserService {
   deleteUser(id: number) {
     return this.http.delete<any>(`http://localhost:8080/delete-user/${id}`);
   }
+
+  updateWarehouseState(user: User) {
+    return this.http.put<any>(
+      `http://localhost:8080/update-user`,
+      user
+    );
+  }
 }
