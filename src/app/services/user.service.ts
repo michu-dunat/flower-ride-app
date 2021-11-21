@@ -10,7 +10,9 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   addUser(user: User) {
-    return this.http.post<any>('http://localhost:8080/add-user', user, { observe: 'response' });
+    return this.http.post<any>('http://localhost:8080/add-user', user, {
+      observe: 'response',
+    });
   }
 
   getAllUsers(): Observable<User[]> {
@@ -22,9 +24,8 @@ export class UserService {
   }
 
   updateWarehouseState(user: User) {
-    return this.http.put<any>(
-      `http://localhost:8080/update-user`,
-      user
-    );
+    return this.http.put<any>(`http://localhost:8080/update-user`, user, {
+      observe: 'response',
+    });
   }
 }

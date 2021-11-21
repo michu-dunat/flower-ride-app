@@ -58,8 +58,22 @@ export class UsersTableComponent implements OnInit {
   }
 
   edit(user: User) {
+    const userCopy = { ...user };
+
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
       data: { title: 'Usunąć wybranego użytkownika?', user: user },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+      } else {
+        this.usersList = this.usersList.map((userInList) => {
+          if (userInList.id == userCopy.id) {
+            return userCopy;
+          } else {
+            return userInList;
+          }
+        });
+      }
     });
   }
 }

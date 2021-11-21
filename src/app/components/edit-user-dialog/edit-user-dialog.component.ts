@@ -13,7 +13,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EditUserDialogComponent implements OnInit {
   roles: Role[] = consts.roles;
-  userCopy = { ...this.data.user };
   constructor(
     public dialogRef: MatDialogRef<EditUserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { title: string; user: User },
@@ -24,8 +23,6 @@ export class EditUserDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   onNoClick() {
-    this.data.user = this.userCopy;
-
     this.dialogRef.close();
   }
 
