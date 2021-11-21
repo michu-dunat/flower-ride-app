@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WarehouseStateService } from './services/warehouse-state.service';
 import { AddAmountDialog, DeleteConfirmationDialog, WarehouseStatesTableComponent } from './components/warehouse-states-table/warehouse-states-table.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { UsersTableComponent } from './components/users-table/users-table.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AddAmountDialog, DeleteConfirmationDialog, WarehouseStatesTableComponen
     AddWarehouseStateComponent,
     WarehouseStatesTableComponent,
     DeleteConfirmationDialog,
-    AddAmountDialog
+    AddAmountDialog,
+    AddUserComponent,
+    UsersTableComponent
   ],
   imports: [
     BrowserModule,
