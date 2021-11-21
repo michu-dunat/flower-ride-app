@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/classes/user';
 import { UserService } from 'src/app/services/user.service';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-users-table',
@@ -12,9 +13,11 @@ import { UserService } from 'src/app/services/user.service';
 export class UsersTableComponent implements OnInit {
   usersList: User[] = [];
   columnsToDisplay = ['login', 'password', 'role', 'delete'];
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar) {}
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe((response) => {
@@ -33,23 +36,23 @@ export class UsersTableComponent implements OnInit {
   }
 
   delete(user: User) {
-    // const dialogRef = this.dialog.open(DeleteConfirmationDialog);
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: { title: 'Usunąć wybranego użytkownika?' },
+    });
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.warehouseStatesList = this.warehouseStatesList.filter(
-    //       (wS) => wS !== warehouseState
-    //     );
-    //     this.warehouseStateService
-    //       .deleteWarehouseState(warehouseState.id!)
-    //       .subscribe((response) => {
-    //         if (response == 200) {
-    //           this.snackBar.open('Produkt został usunięty!', 'Ok', {
-    //             duration: 3000,
-    //           });
-    //         }
-    //       });
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.usersList = this.usersList.filter(
+          (userInList) => userInList !== user
+        );
+        this.userService.deleteUser(user.id!).subscribe((response) => {
+          if (response == 200) {
+            this.snackBar.open('Użytkownik został usunięty!', 'Ok', {
+              duration: 3000,
+            });
+          }
+        });
+      }
+    });
   }
 }

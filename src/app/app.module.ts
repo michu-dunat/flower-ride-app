@@ -9,19 +9,20 @@ import { MaterialModule } from './modules/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WarehouseStateService } from './services/warehouse-state.service';
-import { AddAmountDialog, DeleteConfirmationDialog, WarehouseStatesTableComponent } from './components/warehouse-states-table/warehouse-states-table.component';
+import { AddAmountDialog, WarehouseStatesTableComponent } from './components/warehouse-states-table/warehouse-states-table.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
+import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddWarehouseStateComponent,
     WarehouseStatesTableComponent,
-    DeleteConfirmationDialog,
     AddAmountDialog,
     AddUserComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    DeleteConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
