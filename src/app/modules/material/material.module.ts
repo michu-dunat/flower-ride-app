@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
+    MatToolbarModule
   ],
   exports: [
     MatCheckboxModule,
@@ -35,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
+    MatToolbarModule
   ],
 })
 export class MaterialModule {}

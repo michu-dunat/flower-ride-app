@@ -15,6 +15,8 @@ import { UsersTableComponent } from './components/users-table/users-table.compon
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
 import { EditWarehouseStateDialogComponent } from './components/edit-warehouse-state-dialog/edit-warehouse-state-dialog.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { EditWarehouseStateDialogComponent } from './components/edit-warehouse-s
     UsersTableComponent,
     DeleteConfirmationDialogComponent,
     EditUserDialogComponent,
-    EditWarehouseStateDialogComponent
+    EditWarehouseStateDialogComponent,
+    HomePageComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
