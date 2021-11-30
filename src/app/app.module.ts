@@ -17,6 +17,7 @@ import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user
 import { EditWarehouseStateDialogComponent } from './components/edit-warehouse-state-dialog/edit-warehouse-state-dialog.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     EditUserDialogComponent,
     EditWarehouseStateDialogComponent,
     HomePageComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
