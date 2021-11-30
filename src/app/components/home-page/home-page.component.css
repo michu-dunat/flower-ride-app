@@ -1,0 +1,20 @@
+/* Centered text */
+header {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(32, 148, 32);
+    text-align: center;
+}
+h1 {
+    /* text-transform: uppercase; */
+    margin: 0;
+    font-size: 6rem;
+    white-space: nowrap;
+    color: rgb(37, 175, 37);
+}
+p {
+    margin: 0;
+    font-size: 1.5rem;
+}
