@@ -7,7 +7,7 @@ import { AddWarehouseStateComponent } from './components/add-warehouse-state/add
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WarehouseStateService } from './services/warehouse-state.service';
 import { AddAmountDialog, WarehouseStatesTableComponent } from './components/warehouse-states-table/warehouse-states-table.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
@@ -18,6 +18,7 @@ import { EditWarehouseStateDialogComponent } from './components/edit-warehouse-s
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LoginComponent } from './components/login/login.component';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [WarehouseStateService],
+  providers: [WarehouseStateService,  { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true } ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
