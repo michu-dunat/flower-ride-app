@@ -10,12 +10,19 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private sessionService: SessionService, private router: Router, private snackBar: MatSnackBar) { }
+  role: any;
+
+  constructor(private sessionService: SessionService, private router: Router, private snackBar: MatSnackBar) {
+    
+   }
 
   ngOnInit(): void {
+   
   }
 
-  isLoggedIn() { return this.sessionService.loggedIn; }
+  isLoggedIn() {
+    this.role = sessionStorage.getItem('role');
+    return this.sessionService.loggedIn; }
 
   logout() {
     sessionStorage.setItem('token', '');
@@ -24,6 +31,7 @@ export class ToolbarComponent implements OnInit {
     this.snackBar.open('Pomyślnie wylogowano', 'Ok', {
       duration: 3000,
     });
+    this.role = '';
     this.router.navigateByUrl('');
   }
 }

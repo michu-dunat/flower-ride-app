@@ -27,7 +27,7 @@ export class WarehouseStatesTableComponent implements OnInit {
     private warehouseStateService: WarehouseStateService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.warehouseStateService.getAllWarehouseStates().subscribe((response) => {
@@ -93,17 +93,13 @@ export class WarehouseStatesTableComponent implements OnInit {
 
     const dialogRef = this.dialog.open(EditWarehouseStateDialogComponent, {
       data: {
-        title: 'Usunąć wybranego użytkownika?',
+        title: 'Edycja produktu',
         warehouseState: warehouseState,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('1');
-
       } else {
-        console.log('2');
-        
         this.warehouseStatesList = this.warehouseStatesList.map(
           (warehouseStateInList) => {
             if (warehouseStateInList.id == warehouseStateCopy.id) {
@@ -146,5 +142,5 @@ export class WarehouseStatesTableComponent implements OnInit {
   `,
 })
 export class AddAmountDialog {
-  constructor(public dialogRef: MatDialogRef<AddAmountDialog>) {}
+  constructor(public dialogRef: MatDialogRef<AddAmountDialog>) { }
 }

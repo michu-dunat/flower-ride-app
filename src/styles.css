@@ -18,3 +18,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  height: 10
     background-repeat:no-repeat;
     background-position:center center;
 }
+
+table{
+    width: 90%;
+    margin: auto;
+}
+
+mat-card{
+    width:min-content;
+    margin-top: 20px;
+}

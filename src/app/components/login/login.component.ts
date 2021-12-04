@@ -5,6 +5,7 @@ import { SHA256, enc } from 'crypto-js';
 import { Credentials } from 'src/app/classes/credentials';
 import { SessionService } from 'src/app/services/session.service';
 import { UserService } from 'src/app/services/user.service';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private sessionService: SessionService
+    private sessionService: SessionService,
   ) { }
 
   ngOnInit(): void {

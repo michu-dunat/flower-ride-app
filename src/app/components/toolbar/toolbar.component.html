@@ -5,10 +5,10 @@
         </button>
     </div>
     <div class="spacer"></div>
-    <button class="button-container" mat-button routerLink="/add-warehouse-state">Dodaj produkt</button>
-    <button class="button-container" mat-button routerLink="/warehouse-states-table">Magazyn</button>
-    <button class="button-container" mat-button routerLink="/add-user">Dodaj użytkownika</button>
-    <button class="button-container" mat-button routerLink="/users-table">Lista użytkowników</button>
+    <button  *ngIf="this.role==='ROLE_USER'" class="button-container" mat-button routerLink="/add-warehouse-state">Dodaj produkt</button>
+    <button  class="button-container" mat-button routerLink="/warehouse-states-table">Magazyn</button>
+    <button *ngIf="this.role==='ROLE_ADMIN'" class="button-container" mat-button routerLink="/add-user">Dodaj użytkownika</button>
+    <button  *ngIf="this.role==='ROLE_ADMIN'" class="button-container" mat-button routerLink="/users-table">Lista użytkowników</button>
     <button class="button-container" *ngIf="!isLoggedIn()" mat-raised-button routerLink="/login" color="accent">Zaloguj się</button>
     <button class="button-container" *ngIf="isLoggedIn()" (click)="logout()" mat-raised-button color="accent">Wyloguj się</button>
 </mat-toolbar>
