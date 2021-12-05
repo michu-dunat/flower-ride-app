@@ -27,7 +27,7 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let warehouseState; let rowIndex = index">
     <mat-form-field style="width: 35px;">
-      <input matInput type="number" min="0" [(ngModel)]="amountToBuyTable[rowIndex]">
+      <input matInput type="number" min="0" [max]="warehouseState.amount" [(ngModel)]="amountToBuyTable[rowIndex]">
     </mat-form-field>
       <button mat-icon-button color="primary" (click)="addToShoppingCart(warehouseState)">
         <mat-icon>add_shopping_cart</mat-icon>

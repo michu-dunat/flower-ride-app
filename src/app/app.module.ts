@@ -22,6 +22,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
 import { ShoppingCartContentComponent } from './components/shopping-cart-content/shopping-cart-content.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { PaymentDialogComponent } from './components/payment-dialog/payment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     HomePageComponent,
     ToolbarComponent,
     LoginComponent,
-    ShoppingCartContentComponent
+    ShoppingCartContentComponent,
+    PaymentDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShoppingCartRecord } from 'src/app/classes/shopping-cart-record';
+import { OrderService } from 'src/app/services/order.service';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
 
 @Component({
   selector: 'app-shopping-cart-content',
@@ -20,7 +23,7 @@ export class ShoppingCartContentComponent implements OnInit {
     lastNameCtrl: ['', Validators.required],
     streetCtrl: ['', Validators.required],
     buildingNumberCtrl: ['', Validators.required],
-    apartmentNumberCtrl: ['', Validators.required],
+    apartmentNumberCtrl: [''],
     cityCtrl: ['', Validators.required],
     postCodeCtrl: ['', [Validators.required, Validators.pattern('[0-9]{2}-[0-9]{3}')]],
     deliveryDateCtrl: ['', Validators.required]
@@ -35,7 +38,11 @@ export class ShoppingCartContentComponent implements OnInit {
     'amount',
     'delete'
   ];
-  constructor(private snackBar: MatSnackBar, private _formBuilder: FormBuilder) { }
+  constructor(
+    private snackBar: MatSnackBar,
+    private _formBuilder: FormBuilder,
+    private orderService: OrderService,
+    private dialog: MatDialog,) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('cart') != null && localStorage.getItem('cart') != '') {
@@ -62,7 +69,23 @@ export class ShoppingCartContentComponent implements OnInit {
     })
   }
   makeOrder() {
-    //TODO
+    this.orderService.makeOrder(this.senderFormGroup, this.receiverFormGroup, this.totalSum, this.shoppingCartRecords)
+      .subscribe((response) => {
+        if (response.status == 200) {
+          localStorage.removeItem('cart')
+
+         this.dialog.open(PaymentDialogComponent, {
+            data: { orderId: response.body },
+            disableClose: true
+          });
+        }
+      }, (error) => {
+        if (error.status == 409)
+          this.snackBar.open("Niewystarczająca liczba produktów w magazynie", "OK", { duration: 3000 })
+        else
+          this.snackBar.open("Coś poszło nie tak!", "OK", { duration: 3000 })
+      }
+      );
   }
 
 }
