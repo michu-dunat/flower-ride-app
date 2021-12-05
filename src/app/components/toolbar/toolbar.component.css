@@ -4,8 +4,12 @@
 .button-container {
     display: flex;
     justify-content: center;
-    width: 170px;
+    width: auto;
     font-size: large;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 10px;
+
 }
 .shopping-cart {
     margin-left: 20px;
