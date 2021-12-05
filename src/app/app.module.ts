@@ -19,6 +19,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { ShoppingCartContentComponent } from './components/shopping-cart-content/shopping-cart-content.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
     EditWarehouseStateDialogComponent,
     HomePageComponent,
     ToolbarComponent,
-    LoginComponent
+    LoginComponent,
+    ShoppingCartContentComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +46,10 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
     MaterialModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [WarehouseStateService,  { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true } ],
+  providers: [WarehouseStateService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }, 
+    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'}],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

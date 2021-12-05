@@ -1,0 +1,36 @@
+.total-sum{
+    margin-right: 10%;
+    text-align: right;
+    font-size: 20px;
+}
+
+.info{
+    margin-right: 10%;
+    font-size: 15px;
+    text-align: right;
+}
+
+table{
+    width: 80%;
+}
+
+.column{
+    width:50%;
+    float: left;
+}
+
+.empty-cart{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 150px;
+    color: black;
+}
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+}
+  
+.mat-form-field {
+    margin-top: 16px;
+    margin-left: 15px;
+}

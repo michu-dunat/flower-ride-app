@@ -4,6 +4,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { AddWarehouseStateComponent } from './components/add-warehouse-state/add-warehouse-state.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { ShoppingCartContentComponent } from './components/shopping-cart-content/shopping-cart-content.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { WarehouseStatesTableComponent } from './components/warehouse-states-table/warehouse-states-table.component';
 
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'warehouse-states-table', component: WarehouseStatesTableComponent },
   { path: 'add-user', component: AddUserComponent },
   { path: 'users-table', component: UsersTableComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'cart-content', component: ShoppingCartContentComponent }
 ];
 
 @NgModule({

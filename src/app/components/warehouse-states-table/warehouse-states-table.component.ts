@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { ShoppingCartRecord } from 'src/app/classes/shopping-cart-record';
 import { WarehouseState } from 'src/app/classes/warehouse-state';
 import { WarehouseStateService } from 'src/app/services/warehouse-state.service';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
@@ -12,16 +14,21 @@ import { EditWarehouseStateDialogComponent } from '../edit-warehouse-state-dialo
   styleUrls: ['./warehouse-states-table.component.css'],
 })
 export class WarehouseStatesTableComponent implements OnInit {
-  warehouseStatesList: WarehouseState[] = [];
+  warehouseStatesList: WarehouseState[] = []
+  shoppingCartRecords: ShoppingCartRecord[] = []
   columnsToDisplay = [
     'name',
     'pricePerPiece',
     'amount',
     'isFlower',
+    'addToShoppingCart',
     'delete',
     'add',
     'edit'
   ];
+  role: any
+  dataSource?: MatTableDataSource<WarehouseState>;
+  amountToBuyTable: number[] = [];
 
   constructor(
     private warehouseStateService: WarehouseStateService,
@@ -32,7 +39,36 @@ export class WarehouseStatesTableComponent implements OnInit {
   ngOnInit(): void {
     this.warehouseStateService.getAllWarehouseStates().subscribe((response) => {
       this.warehouseStatesList = response;
+      this.amountToBuyTable = new Array(this.warehouseStatesList.length).fill(0)
     });
+    this.role = sessionStorage.getItem('role');
+    if(localStorage.getItem('cart')!=null && localStorage.getItem('cart')!=''){
+      this.shoppingCartRecords = JSON.parse(<string>localStorage.getItem('cart'))
+    }
+  }
+
+  addToShoppingCart(warehouseState: WarehouseState){
+    
+    let contains:boolean = false;
+
+    if(this.amountToBuyTable[this.warehouseStatesList.indexOf(warehouseState)]==0) return;
+
+    this.shoppingCartRecords.forEach(element => {
+      if(element.warehouseState.id == warehouseState.id){
+        element.amountToBuy += this.amountToBuyTable[this.warehouseStatesList.indexOf(warehouseState)];
+        contains = true;
+      }
+    });
+
+    if(contains){
+      localStorage.setItem('cart', JSON.stringify(this.shoppingCartRecords))
+      this.amountToBuyTable.fill(0)
+      return;
+    } 
+
+    this.shoppingCartRecords.push(new ShoppingCartRecord(warehouseState, this.amountToBuyTable[this.warehouseStatesList.indexOf(warehouseState)]))
+    localStorage.setItem('cart', JSON.stringify(this.shoppingCartRecords))
+    this.amountToBuyTable.fill(0)
   }
 
   delete(warehouseState: WarehouseState) {

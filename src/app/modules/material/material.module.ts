@@ -10,6 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -24,7 +27,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatCheckboxModule,
@@ -37,7 +43,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 })
-export class MaterialModule {}
+export class MaterialModule { }
