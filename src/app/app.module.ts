@@ -23,6 +23,7 @@ import { ShoppingCartContentComponent } from './components/shopping-cart-content
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PaymentDialogComponent } from './components/payment-dialog/payment-dialog.component';
+import { ContactDialogComponent } from './components/contact-dialog/contact-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PaymentDialogComponent } from './components/payment-dialog/payment-dial
     ToolbarComponent,
     LoginComponent,
     ShoppingCartContentComponent,
-    PaymentDialogComponent
+    PaymentDialogComponent,
+    ContactDialogComponent
   ],
   imports: [
     BrowserModule,

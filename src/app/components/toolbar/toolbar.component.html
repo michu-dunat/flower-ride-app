@@ -5,6 +5,7 @@
         </button>
     </div>
     <div class="spacer"></div>
+    <button class="button-container" mat-button (click)="openContactDialog()">O nas</button>
     <button  *ngIf="this.role==='ROLE_USER'" class="button-container" mat-button routerLink="/add-warehouse-state">Dodaj produkt</button>
     <button  class="button-container" mat-button routerLink="/warehouse-states-table">
         <span *ngIf="this.role==='ROLE_USER'">

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SessionService } from 'src/app/services/session.service';
+import { ContactDialogComponent } from '../contact-dialog/contact-dialog.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,17 +14,18 @@ export class ToolbarComponent implements OnInit {
 
   role: any;
 
-  constructor(private sessionService: SessionService, private router: Router, private snackBar: MatSnackBar) {
-    
-   }
+  constructor(private sessionService: SessionService, private router: Router, private snackBar: MatSnackBar, private dialog: MatDialog) {
+
+  }
 
   ngOnInit(): void {
-   
+
   }
 
   isLoggedIn() {
     this.role = sessionStorage.getItem('role');
-    return this.sessionService.loggedIn; }
+    return this.sessionService.loggedIn;
+  }
 
   logout() {
     sessionStorage.setItem('token', '');
@@ -33,5 +36,9 @@ export class ToolbarComponent implements OnInit {
     });
     this.role = '';
     this.router.navigateByUrl('');
+  }
+
+  openContactDialog() {
+    this.dialog.open(ContactDialogComponent)
   }
 }
