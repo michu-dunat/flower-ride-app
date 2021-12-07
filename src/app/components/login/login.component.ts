@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SHA256, enc } from 'crypto-js';
@@ -13,14 +14,17 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  login: string = '';
-  password: string = '';
+  loginForm = this.formBuilder.group({
+    login: ['', Validators.required],
+    password: ['', Validators.required]
+  })
 
   constructor(
     private userService: UserService,
     private snackBar: MatSnackBar,
     private router: Router,
     private sessionService: SessionService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -28,12 +32,11 @@ export class LoginComponent implements OnInit {
   }
 
   sendLoginRequest() {
-    if (this.login.length >= 8 && this.password.length >= 8) {
-      let credentials = new Credentials(this.login, SHA256(this.password).toString(enc.Hex))
+      let credentials = new Credentials(this.loginForm.value.login, SHA256(this.loginForm.value.password).toString(enc.Hex))
       this.userService.login(credentials).subscribe(response => {
         if (response.loggedIn === 'true') {
           sessionStorage.setItem('token',
-            btoa(this.login + ':' + SHA256(this.password).toString(enc.Hex)));
+            btoa(this.loginForm.value.login + ':' + SHA256(this.loginForm.value.password).toString(enc.Hex)));
           sessionStorage.setItem('role', response.role);
           this.sessionService.loggedIn = true;
           this.snackBar.open('Pomyślnie zalogowano!', 'Ok', {
@@ -46,6 +49,5 @@ export class LoginComponent implements OnInit {
           });
         }
       });
-    }
   }
 }

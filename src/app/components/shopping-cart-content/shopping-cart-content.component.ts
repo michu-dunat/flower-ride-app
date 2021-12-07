@@ -21,7 +21,7 @@ export class ShoppingCartContentComponent implements OnInit {
   receiverFormGroup = this._formBuilder.group({
     nameCtrl: ['', Validators.required],
     lastNameCtrl: ['', Validators.required],
-    streetCtrl: ['', Validators.required],
+    streetCtrl: [''],
     buildingNumberCtrl: ['', Validators.required],
     apartmentNumberCtrl: [''],
     cityCtrl: ['', Validators.required],
@@ -87,5 +87,4 @@ export class ShoppingCartContentComponent implements OnInit {
       }
       );
   }
-
 }

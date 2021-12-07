@@ -1,16 +1,18 @@
 <mat-card>
+  <form [formGroup]="loginForm">
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Login</mat-label>
-        <input matInput minlength="8" required="true" type="login" [(ngModel)]="login" /> </mat-form-field
-      ><br />
+        <input matInput minlength="8" required="true" type="login" formControlName="login"/>
+      </mat-form-field><br />
       <mat-form-field appearance="fill">
         <mat-label>Hasło</mat-label>
-        <input matInput minlength="8" required="true" type="password" [(ngModel)]="password" /> </mat-form-field
-      ><br />
+        <input matInput minlength="8" required="true" type="password" formControlName="password"/>
+      </mat-form-field><br />
       <br />
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button (click)="sendLoginRequest()">Zaloguj się</button>
     </mat-card-actions>
-  </mat-card>
+  </form>
+</mat-card>

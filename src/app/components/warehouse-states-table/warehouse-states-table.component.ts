@@ -62,13 +62,13 @@ export class WarehouseStatesTableComponent implements OnInit {
 
     if(contains){
       localStorage.setItem('cart', JSON.stringify(this.shoppingCartRecords))
-      this.amountToBuyTable.fill(0)
+      this.amountToBuyTable[this.warehouseStatesList.indexOf(warehouseState)] = 0
       return;
     } 
 
     this.shoppingCartRecords.push(new ShoppingCartRecord(warehouseState, this.amountToBuyTable[this.warehouseStatesList.indexOf(warehouseState)]))
     localStorage.setItem('cart', JSON.stringify(this.shoppingCartRecords))
-    this.amountToBuyTable.fill(0)
+    this.amountToBuyTable[this.warehouseStatesList.indexOf(warehouseState)] = 0
   }
 
   delete(warehouseState: WarehouseState) {

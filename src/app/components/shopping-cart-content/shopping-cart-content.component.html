@@ -91,7 +91,7 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Ulica</mat-label>
-            <input matInput formControlName="streetCtrl" placeholder="Np. Grunwaldzka" required>
+            <input matInput formControlName="streetCtrl" placeholder="Np. Grunwaldzka">
           </mat-form-field>
 
           <mat-form-field appearance="fill">
@@ -111,7 +111,7 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Data dostarczenia</mat-label>
-            <input formControlName="deliveryDateCtrl" matInput [matDatepicker]="picker" [min]="today">
+            <input formControlName="deliveryDateCtrl" matInput [matDatepicker]="picker" [min]="today" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker  #picker></mat-datepicker>
           </mat-form-field>

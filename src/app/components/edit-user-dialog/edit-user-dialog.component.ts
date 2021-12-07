@@ -19,24 +19,25 @@ export class EditUserDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { title: string; user: User },
     private userService: UserService,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onNoClick() {
     this.dialogRef.close();
   }
 
   onYesClick() {
-    this.data.user.password = SHA256(this.data.user.password).toString(enc.Hex)
-    this.userService.updateUser(this.data.user).subscribe(
-      (response) => {
-        if (response.status == 200) {
-          this.snackBar.open('Użytkownik został zaktualizowany!', 'Ok', {
-            duration: 3000,
-          });
-        }
-      },
+    if (this.data.user.password != '') {
+      this.data.user.password = SHA256(this.data.user.password).toString(enc.Hex)
+    }
+
+    this.userService.updateUser(this.data.user).subscribe((response) => {
+      this.data.user.password = ''
+      this.snackBar.open('Użytkownik został zaktualizowany!', 'Ok', {
+        duration: 3000,
+      });
+    },
       (error) => {
         if (error.status == 406) {
           this.snackBar.open('Error!', 'Ok', {

@@ -13,7 +13,7 @@ import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.co
 })
 export class UsersTableComponent implements OnInit {
   usersList: User[] = [];
-  columnsToDisplay = ['login', 'password', 'role', 'delete', 'edit'];
+  columnsToDisplay = ['login', 'role', 'delete', 'edit'];
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
@@ -61,7 +61,7 @@ export class UsersTableComponent implements OnInit {
     const userCopy = { ...user };
 
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      data: { title: 'Usunąć wybranego użytkownika?', user: user },
+      data: { title: 'Edycja wybranego użytkownika', user: user },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
