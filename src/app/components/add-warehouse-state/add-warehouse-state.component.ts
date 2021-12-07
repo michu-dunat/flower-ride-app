@@ -10,7 +10,7 @@ import { WarehouseStateService } from 'src/app/services/warehouse-state.service'
 })
 export class AddWarehouseStateComponent implements OnInit {
   name: string = '';
-  pricePerPiece: number = 0;
+  pricePerPiece: number = 1;
   amount: number = 0;
   isFlower = false;
 
@@ -28,11 +28,13 @@ export class AddWarehouseStateComponent implements OnInit {
     this.warehouseStateService
       .addWarehouseState(warehouseState)
       .subscribe(response => {
-        if(response == 200) {
-          this.snackBar.open("Produkt został dodany!", "Ok", {
-            duration: 3000
-          })
-        }
+        this.name = '';
+        this.pricePerPiece = 1;
+        this.amount = 0;
+        this.isFlower = false;
+        this.snackBar.open("Produkt został dodany!", "Ok", {
+          duration: 3000
+        })
       });
   }
 }

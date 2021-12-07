@@ -112,7 +112,7 @@ export class WarehouseStatesTableComponent implements OnInit {
           .subscribe((response) => {
             if (response.status == 200) {
               this.snackBar.open(
-                'Ilość produktu została zaktualizowana!',
+                'Liczba produktów została zaktualizowana!',
                 'Ok',
                 {
                   duration: 3000,
@@ -153,7 +153,7 @@ export class WarehouseStatesTableComponent implements OnInit {
 @Component({
   selector: 'add-amount-dialog',
   template: `
-    <h2 mat-dialog-title>Zwiększyć ilość produktu?</h2>
+    <h2 mat-dialog-title>Zwiększyć liczbę produktów?</h2>
 
     <mat-dialog-content>
       <form #modalForm="ngForm">
@@ -163,7 +163,7 @@ export class WarehouseStatesTableComponent implements OnInit {
               matInput
               type="number"
               name="amountToAdd"
-              placeholder="Ilość"
+              placeholder="Liczba"
               ngModel
             />
           </mat-form-field>
