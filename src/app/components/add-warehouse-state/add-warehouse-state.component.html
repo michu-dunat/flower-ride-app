@@ -1,23 +1,23 @@
 <mat-card>
-  <mat-card-title>Nowy produkt</mat-card-title>
+  <mat-card-title>New product</mat-card-title>
   <form #newWarehouseStateForm="ngForm" (ngSubmit)="sendJson()">
     <mat-card-content>
       <mat-form-field appearance="fill">
-        <mat-label>Nazwa</mat-label>
+        <mat-label>Name</mat-label>
         <input name="name" matInput type="text" [(ngModel)]="name" required/>
       </mat-form-field><br />
       <mat-form-field appearance="fill">
-        <mat-label>Cena za sztukę</mat-label>
+        <mat-label>Price per piece</mat-label>
         <input name="pricePerPiece" matInput type="number" [min]="1" [(ngModel)]="pricePerPiece" required/>
       </mat-form-field><br />
       <mat-form-field appearance="fill">
-        <mat-label>Liczba sztuk</mat-label>
+        <mat-label>Amount</mat-label>
         <input name="amount" matInput type="number" [(ngModel)]="amount" required/>
       </mat-form-field><br />
-      <mat-checkbox name="isFlower" [(ngModel)]="isFlower" ngDefaultControl>Kwiat</mat-checkbox>
+      <mat-checkbox name="isFlower" [(ngModel)]="isFlower" ngDefaultControl>Flower</mat-checkbox>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button type="submit" [disabled] = "!newWarehouseStateForm.valid" >Dodaj produkt</button>
+      <button mat-raised-button type="submit" [disabled] = "!newWarehouseStateForm.valid" >Add product</button>
     </mat-card-actions>
   </form>
 </mat-card>

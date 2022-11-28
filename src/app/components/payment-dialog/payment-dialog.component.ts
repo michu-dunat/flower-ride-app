@@ -27,11 +27,11 @@ export class PaymentDialogComponent implements OnInit {
     .subscribe(data=>
       {
         this.router.navigate([''])
-        this.snackBar.open("Zamówienie zostało opłacone!", "OK", {duration:3000})
+        this.snackBar.open("The order has been paid!", "OK", {duration:3000})
         this.dialogRef.close()
       }, error =>
       {
-        this.snackBar.open("Wystąpił błąd, spróbuj ponownie później!", "OK", {duration:3000})
+        this.snackBar.open("An error has occured, please try again later!", "OK", {duration:3000})
       })
   }
 

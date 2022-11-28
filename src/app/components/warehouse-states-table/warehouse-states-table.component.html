@@ -1,10 +1,10 @@
 <table mat-table [dataSource]="warehouseStatesList">
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+    <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let warehouseState">{{ warehouseState.name }}</td>
   </ng-container>
   <ng-container matColumnDef="pricePerPiece">
-    <th mat-header-cell *matHeaderCellDef>Cena za sztukę</th>
+    <th mat-header-cell *matHeaderCellDef>Price per piece</th>
     <td mat-cell *matCellDef="let warehouseState">
       {{ warehouseState.pricePerPiece }} zł
     </td>
@@ -12,10 +12,10 @@
   <ng-container matColumnDef="amount">
     <th mat-header-cell *matHeaderCellDef>
       <span *ngIf="this.role==='ROLE_USER'">
-        Liczba sztuk w magazynie
+        Amount in stock
       </span>
       <span *ngIf="this.role!='ROLE_USER'">
-        Dostępność produktu
+        Product availability
       </span>
     </th>
     <td mat-cell *matCellDef="let warehouseState">
@@ -23,10 +23,10 @@
     </td>
   </ng-container>
   <ng-container matColumnDef="isFlower">
-    <th mat-header-cell *matHeaderCellDef>Rodzaj produktu</th>
+    <th mat-header-cell *matHeaderCellDef>Product type</th>
     <td mat-cell *matCellDef="let warehouseState">
-      <div *ngIf="warehouseState.isFlower; else elseBlock">Kwiat</div>
-      <ng-template #elseBlock>Inne</ng-template>
+      <div *ngIf="warehouseState.isFlower; else elseBlock">Flower</div>
+      <ng-template #elseBlock>Other</ng-template>
     </td>
   </ng-container>
 

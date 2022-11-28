@@ -1,16 +1,16 @@
 <mat-card>
-  <mat-card-title>Nowy użytkownik</mat-card-title>
+  <mat-card-title>New user</mat-card-title>
   <mat-card-content>
     <mat-form-field appearance="fill">
       <mat-label>Login</mat-label>
       <input matInput minlength="8" required="true" type="text" [(ngModel)]="login" /> </mat-form-field
     ><br />
     <mat-form-field appearance="fill">
-      <mat-label>Hasło</mat-label>
+      <mat-label>Password</mat-label>
       <input matInput minlength="8" required="true" type="password" [(ngModel)]="password" /> </mat-form-field
     ><br />
     <mat-form-field appearance="fill">
-      <mat-label>Rola</mat-label>
+      <mat-label>Role</mat-label>
       <mat-select [(ngModel)]="selectedRole">
         <mat-option *ngFor="let role of roles" [value]="role.value">
           {{ role.viewValue }}
@@ -20,6 +20,6 @@
     <br />
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="sendJson()">Dodaj użytkownika</button>
+    <button mat-raised-button (click)="sendJson()">Add user</button>
   </mat-card-actions>
 </mat-card>

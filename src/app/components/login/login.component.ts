@@ -39,12 +39,12 @@ export class LoginComponent implements OnInit {
             btoa(this.loginForm.value.login + ':' + SHA256(this.loginForm.value.password).toString(enc.Hex)));
           sessionStorage.setItem('role', response.role);
           this.sessionService.loggedIn = true;
-          this.snackBar.open('Pomyślnie zalogowano!', 'Ok', {
+          this.snackBar.open('Successfully signed in!', 'Ok', {
             duration: 3000,
           });
           this.router.navigate(['']);
         } else {
-          this.snackBar.open('Niepoprawny login/hasło', 'Ok', {
+          this.snackBar.open('Incorrect login/password', 'Ok', {
             duration: 3000,
           });
         }

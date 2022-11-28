@@ -1,23 +1,23 @@
 <div class="empty-cart" *ngIf="this.totalSum==0">
-  Twój koszyk jest pusty
+  Your cart is empty.
 </div>
 
 <div class="row" *ngIf="this.totalSum>0">
   <div class="column">
     <table mat-table [dataSource]="shoppingCartRecords">
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+        <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let record">{{ record.warehouseState.name }}</td>
       </ng-container>
       <ng-container matColumnDef="pricePerPiece">
-        <th mat-header-cell *matHeaderCellDef>Cena za sztukę</th>
+        <th mat-header-cell *matHeaderCellDef>Price per piece</th>
         <td mat-cell *matCellDef="let record">
           {{ record.warehouseState.pricePerPiece }} zł
         </td>
       </ng-container>
 
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef>Ilość</th>
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
         <td mat-cell *matCellDef="let record">{{ record.amountToBuy }}</td>
       </ng-container>
 
@@ -35,10 +35,10 @@
     </table>
     <br><br>
     <div class="info">
-      Koszt wysyłki jest wliczony w koszt zamówienia. <br><br>
+      The shipping cost is included in the cost of the order. <br><br>
     </div>
     <div class="total-sum">
-      <b>Łącznie {{totalSum}} zł</b>
+      <b>Total {{totalSum}} zł</b>
     </div>
   </div>
 
@@ -47,87 +47,87 @@
     <mat-stepper orientation="vertical" [linear]="true" #stepper>
       <mat-step [stepControl]="senderFormGroup">
         <form [formGroup]="senderFormGroup">
-          <ng-template matStepLabel>Dane nadawcy</ng-template>
+          <ng-template matStepLabel>Sender data</ng-template>
           <mat-form-field appearance="fill">
-            <mat-label>Imię</mat-label>
+            <mat-label>Name</mat-label>
             <input matInput formControlName="nameCtrl" required>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <mat-label>Nazwisko</mat-label>
+            <mat-label>Last name</mat-label>
             <input matInput formControlName="lastNameCtrl" required>
           </mat-form-field>
           <br>
           <mat-form-field appearance="fill">
-            <mat-label>Numer telefonu</mat-label>
+            <mat-label>Phone number</mat-label>
             <input matInput placeholder="777232555" maxlength="9" formControlName="phoneNumberCtrl" required>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <mat-label>Adres email</mat-label>
+            <mat-label>E-mail</mat-label>
             <input matInput placeholder="adres@gmail.com" formControlName="emailCtrl" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext>Dalej</button>
+            <button mat-button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
       <mat-step [stepControl]="receiverFormGroup">
         <form [formGroup]="receiverFormGroup">
-          <ng-template matStepLabel>Dane odbiorcy</ng-template>
+          <ng-template matStepLabel>Receiver data</ng-template>
 
           <mat-form-field appearance="fill">
-            <mat-label>Imię</mat-label>
+            <mat-label>Name</mat-label>
             <input matInput formControlName="nameCtrl" required>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Nazwisko</mat-label>
+            <mat-label>Last name</mat-label>
             <input matInput formControlName="lastNameCtrl" required>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Miasto</mat-label>
+            <mat-label>City</mat-label>
             <input matInput formControlName="cityCtrl" placeholder="Np. Wrocław" required>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Ulica</mat-label>
+            <mat-label>Street</mat-label>
             <input matInput formControlName="streetCtrl" placeholder="Np. Grunwaldzka">
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Numer budynku</mat-label>
+            <mat-label>Building number</mat-label>
             <input matInput formControlName="buildingNumberCtrl" placeholder="Np. 18C" required>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Numer mieszkania</mat-label>
+            <mat-label>Apartment number</mat-label>
             <input matInput formControlName="apartmentNumberCtrl" placeholder="Np. 6" >
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Kod pocztowy</mat-label>
+            <mat-label>Postal code</mat-label>
             <input matInput formControlName="postCodeCtrl" placeholder="Np. 50-357" required>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Data dostarczenia</mat-label>
+            <mat-label>Delivery date</mat-label>
             <input formControlName="deliveryDateCtrl" matInput [matDatepicker]="picker" [min]="today" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker  #picker></mat-datepicker>
           </mat-form-field>
 
           <div>
-            <button mat-button matStepperPrevious>Wróć</button>
-            <button mat-button matStepperNext>Dalej</button>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
-        <ng-template matStepLabel>Gotowe</ng-template>
-        <p>Przed złożeniem zamówienia sprawdź czy wszystkie wprowadzone dane są poprawne.</p>
+        <ng-template matStepLabel>Finish</ng-template>
+        <p>Before placing an order, check that all the data entered is correct.</p>
         <div>
-          <button mat-button matStepperPrevious>Wróć</button>
-          <button mat-button (click)="makeOrder()">Złóż zamówienie</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="makeOrder()">Place order</button>
         </div>
       </mat-step>
     </mat-stepper>

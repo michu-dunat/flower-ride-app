@@ -28,9 +28,9 @@ export class UsersTableComponent implements OnInit {
 
   getViewValue(role: string) {
     if (role == 'ROLE_USER') {
-      return 'Użytkownik';
+      return 'User';
     } else if (role == 'ROLE_ADMIN') {
-      return 'Administrator';
+      return 'Admin';
     } else {
       return '';
     }
@@ -38,7 +38,7 @@ export class UsersTableComponent implements OnInit {
 
   delete(user: User) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-      data: { title: 'Usunąć wybranego użytkownika?' },
+      data: { title: 'Do you want to delete the selected user?' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -48,7 +48,7 @@ export class UsersTableComponent implements OnInit {
         );
         this.userService.deleteUser(user.id!).subscribe((response) => {
           if (response == 200) {
-            this.snackBar.open('Użytkownik został usunięty!', 'Ok', {
+            this.snackBar.open('The user has been deleted!', 'Ok', {
               duration: 3000,
             });
           }
@@ -61,7 +61,7 @@ export class UsersTableComponent implements OnInit {
     const userCopy = { ...user };
 
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      data: { title: 'Edycja wybranego użytkownika', user: user },
+      data: { title: 'Modifing the selected user', user: user },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

@@ -73,7 +73,7 @@ export class WarehouseStatesTableComponent implements OnInit {
 
   delete(warehouseState: WarehouseState) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-      data: { title: 'Usunąć wybrany produkt?' },
+      data: { title: 'Do you want to delete the selected product??' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -85,7 +85,7 @@ export class WarehouseStatesTableComponent implements OnInit {
           .deleteWarehouseState(warehouseState.id!)
           .subscribe((response) => {
             if (response == 200) {
-              this.snackBar.open('Produkt został usunięty!', 'Ok', {
+              this.snackBar.open('The product has been deleted!', 'Ok', {
                 duration: 3000,
               });
             }
@@ -112,7 +112,7 @@ export class WarehouseStatesTableComponent implements OnInit {
           .subscribe((response) => {
             if (response.status == 200) {
               this.snackBar.open(
-                'Liczba produktów została zaktualizowana!',
+                'Product amount has been modified!',
                 'Ok',
                 {
                   duration: 3000,
@@ -129,7 +129,7 @@ export class WarehouseStatesTableComponent implements OnInit {
 
     const dialogRef = this.dialog.open(EditWarehouseStateDialogComponent, {
       data: {
-        title: 'Edycja produktu',
+        title: 'Modifing the selected product',
         warehouseState: warehouseState,
       },
     });
@@ -153,7 +153,7 @@ export class WarehouseStatesTableComponent implements OnInit {
 @Component({
   selector: 'add-amount-dialog',
   template: `
-    <h2 mat-dialog-title>Zwiększyć liczbę produktów?</h2>
+    <h2 mat-dialog-title>Do you want to increase the amount of product?</h2>
 
     <mat-dialog-content>
       <form #modalForm="ngForm">
@@ -163,7 +163,7 @@ export class WarehouseStatesTableComponent implements OnInit {
               matInput
               type="number"
               name="amountToAdd"
-              placeholder="Liczba"
+              placeholder="Amount"
               ngModel
             />
           </mat-form-field>
@@ -172,8 +172,8 @@ export class WarehouseStatesTableComponent implements OnInit {
     </mat-dialog-content>
 
     <mat-dialog-actions>
-      <button mat-button [mat-dialog-close]>Cofnij</button>
-      <button mat-button [mat-dialog-close]="modalForm.value">Dodaj</button>
+      <button mat-button [mat-dialog-close]>Back</button>
+      <button mat-button [mat-dialog-close]="modalForm.value">Add</button>
     </mat-dialog-actions>
   `,
 })

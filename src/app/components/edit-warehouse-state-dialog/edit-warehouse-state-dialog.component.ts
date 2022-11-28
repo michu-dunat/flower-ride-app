@@ -30,7 +30,7 @@ export class EditWarehouseStateDialogComponent implements OnInit {
       .subscribe(
         (response) => {
           if (response.status == 200) {
-            this.snackBar.open('Produkt został zaktualizowany!', 'Ok', {
+            this.snackBar.open('The product has been modified!', 'Ok', {
               duration: 3000,
             });
           }

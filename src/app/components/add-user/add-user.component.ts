@@ -33,7 +33,7 @@ export class AddUserComponent implements OnInit {
     this.userService.addUser(user).subscribe(
       (response) => {
         if (response.status == 200) {
-          this.snackBar.open('Użytkownik został dodany!', 'Ok', {
+          this.snackBar.open('The user has been added!', 'Ok', {
             duration: 3000,
           });
         }

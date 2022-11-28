@@ -32,7 +32,7 @@ export class AddWarehouseStateComponent implements OnInit {
         this.pricePerPiece = 1;
         this.amount = 0;
         this.isFlower = false;
-        this.snackBar.open("Produkt został dodany!", "Ok", {
+        this.snackBar.open("The product has been added!", "Ok", {
           duration: 3000
         })
       });

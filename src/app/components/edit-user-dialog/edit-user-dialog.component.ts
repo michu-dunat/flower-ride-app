@@ -34,7 +34,7 @@ export class EditUserDialogComponent implements OnInit {
 
     this.userService.updateUser(this.data.user).subscribe((response) => {
       this.data.user.password = ''
-      this.snackBar.open('Użytkownik został zaktualizowany!', 'Ok', {
+      this.snackBar.open('The user has been modified!', 'Ok', {
         duration: 3000,
       });
     },

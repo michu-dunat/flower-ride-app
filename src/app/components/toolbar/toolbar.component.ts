@@ -31,7 +31,7 @@ export class ToolbarComponent implements OnInit {
     sessionStorage.setItem('token', '');
     sessionStorage.setItem('role', '');
     this.sessionService.loggedIn = false;
-    this.snackBar.open('Pomyślnie wylogowano', 'Ok', {
+    this.snackBar.open('Successfully logged out', 'Ok', {
       duration: 3000,
     });
     this.role = '';

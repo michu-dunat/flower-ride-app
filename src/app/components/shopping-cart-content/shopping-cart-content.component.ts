@@ -57,7 +57,7 @@ export class ShoppingCartContentComponent implements OnInit {
     );
     localStorage.setItem('cart', JSON.stringify(this.shoppingCartRecords))
     this.refreshTotalSum()
-    this.snackBar.open("Usunąłeś z koszyka produkt " + shoppingCartRecord.warehouseState.name,
+    this.snackBar.open("You have deleted a product from your cart." + shoppingCartRecord.warehouseState.name,
       "OK", { duration: 3000 });
 
   }
@@ -81,9 +81,9 @@ export class ShoppingCartContentComponent implements OnInit {
         }
       }, (error) => {
         if (error.status == 409)
-          this.snackBar.open("Niewystarczająca liczba produktów w magazynie", "OK", { duration: 3000 })
+          this.snackBar.open("Not enough products in stock", "OK", { duration: 3000 })
         else
-          this.snackBar.open("Coś poszło nie tak!", "OK", { duration: 3000 })
+          this.snackBar.open("Something went wrong!", "OK", { duration: 3000 })
       }
       );
   }

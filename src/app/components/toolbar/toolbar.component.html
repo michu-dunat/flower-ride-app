@@ -5,20 +5,20 @@
         </button>
     </div>
     <div class="spacer"></div>
-    <button class="button-container" mat-button (click)="openContactDialog()">O nas</button>
-    <button  *ngIf="this.role==='ROLE_USER'" class="button-container" mat-button routerLink="/add-warehouse-state">Dodaj produkt</button>
+    <button class="button-container" mat-button (click)="openContactDialog()">About us</button>
+    <button  *ngIf="this.role==='ROLE_USER'" class="button-container" mat-button routerLink="/add-warehouse-state">Add new product</button>
     <button  class="button-container" mat-button routerLink="/warehouse-states-table">
         <span *ngIf="this.role==='ROLE_USER'">
-            Magazyn
+            Warehouse
         </span>
         <span *ngIf="this.role!='ROLE_USER'">
-            Przeglądaj produkty
+            Browse products
         </span>
     </button>
-    <button *ngIf="this.role==='ROLE_ADMIN'" class="button-container" mat-button routerLink="/add-user">Dodaj użytkownika</button>
-    <button  *ngIf="this.role==='ROLE_ADMIN'" class="button-container" mat-button routerLink="/users-table">Lista użytkowników</button>
-    <button class="button-container" *ngIf="!isLoggedIn()" mat-raised-button routerLink="/login" color="accent">Zaloguj się</button>
+    <button *ngIf="this.role==='ROLE_ADMIN'" class="button-container" mat-button routerLink="/add-user">Add new user</button>
+    <button  *ngIf="this.role==='ROLE_ADMIN'" class="button-container" mat-button routerLink="/users-table">User list</button>
+    <button class="button-container" *ngIf="!isLoggedIn()" mat-raised-button routerLink="/login" color="accent">Sign in</button>
     <button class="shopping-cart" mat-mini-fab color="accent" routerLink="/cart-content"><mat-icon>shopping_cart</mat-icon></button>
-    <button class="button-container" *ngIf="isLoggedIn()" (click)="logout()" mat-raised-button color="accent">Wyloguj się</button>
+    <button class="button-container" *ngIf="isLoggedIn()" (click)="logout()" mat-raised-button color="accent">Logout</button>
 
 </mat-toolbar>
